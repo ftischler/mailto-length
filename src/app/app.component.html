@@ -1,20 +1,42 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>Mailto URL Length Calculator</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-card class="main-card">
+  <mat-card-header>
+    <h2>Insert your text here</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="card-body" *ngIf="mailtoUrl$ | async as mailtoUrl">
+      <form [formGroup]="mailtoForm" (submit)="onTestUrl()">
+        <div>
+          <mat-form-field class="mailto-input">
+            <input type="text" matInput formControlName="recipient" placeholder="Recipient">
+            <mat-error>Please enter a valid e-mail</mat-error>
+          </mat-form-field>
+          <mat-form-field class="mailto-input">
+            <input type="text" matInput formControlName="subject" placeholder="Subject">
+          </mat-form-field>
+          <mat-form-field class="mailto-input">
+            <textarea matInput formControlName="mailbody" placeholder="Mail body" rows="10"></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <a [href]="mailtoUrl" #testLink></a>
+          <button mat-raised-button color="primary" type="submit">Test URL</button>
+        </div>
+        <div class="mt-3">
+          <h3>Mailto URL length (should not exceed 2000 chars)</h3>
+          <p [class.too-long]="mailtoUrl.length > 2000">{{mailtoUrl.length}}</p>
+          <h3>Mailto URL (Click on textarea to copy)</h3>
+          <mat-form-field class="mailto-input">
+            <textarea matInput [value]="mailtoUrl" readonly rows="5"
+                      class="click-to-copy" (click)="onCopy($event.target)">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,19 @@
+.main-card {
+  margin: 10px;
+}
+
+.mailto-input {
+  width: 80%;
+}
+
+.click-to-copy {
+  cursor: copy;
+}
+
+.too-long {
+  color: red;
+}
+
+.mt-3 {
+  margin-top: 3em;
+}
