@@ -17,3 +17,15 @@
 .mt-3 {
   margin-top: 3em;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.copyright {
+  padding: 5px;
+  color: #d3d3d3;
+}
