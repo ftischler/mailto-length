@@ -17,10 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
     subject: new FormControl(''),
     mailbody: new FormControl('')
   });
-
-  private alive = true;
-
   public mailtoUrl$: Observable<string>;
+  
+  private alive = true;
 
   constructor(private snackBar: MatSnackBar) { }
 
